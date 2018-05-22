@@ -1,7 +1,7 @@
 {
-  "name": "@ftchinese/ftc-searchbar-react",
-  "version": "1.0.3",
-  "description": "The search bar for FTC, which is a  partial of ftc-header. It is the react version.",
+  "name": "@ftchinese/ftc-header-react-new",
+  "version": "1.0.0",
+  "description": "The new react version for ftc-header, composing with a series of  smaller components such as ftc-nav-react, ftc-pushdownmenu-react, ftc-login-react,etc. ",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "scripts": {
@@ -13,25 +13,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wangyichen1064431086/ftc-pushdownmenu-react.git"
+    "url": "git+https://github.com/wangyichen1064431086/ftc-header-react-new.git"
   },
   "files": [
     "build"
   ],
   "keywords": [
-    "search",
-    "searchBar",
+    "header",
     "react",
     "ftchinese"
   ],
   "author": "wangyichen",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wangyichen1064431086/ftc-pushdownmenu-react/issues"
+    "url": "https://github.com/wangyichen1064431086/ftc-header-react-new/issues"
   },
   "homepage": "https://github.com/wangyichen1064431086/ftc-pushdownmenu-react#readme",
   "dependencies": {
+    "@ftchinese/ftc-login-react": "^1.0.4",
     "@ftchinese/ftc-nav-react": "^1.0.2",
+    "@ftchinese/ftc-pushdownmenu-react": "^1.0.1",
     "classnames": "^2.2.5",
     "extract-text-webpack-plugin": "^3.0.2",
     "immutable": "^3.8.2",

@@ -8,9 +8,10 @@ import header from '../scss/header.scss';//如果省略.scss，虽然在webpack�
 
 import {PushdownMenu, PushdownItem} from '@ftchinese/ftc-pushdownmenu-react';
 
+import SignMenu from './SignMenu.js';
 
-@CSSModules(searchbar, {allowMultiple: true})
-class SearchBar extends React.Component {
+@CSSModules(header, {allowMultiple: true})
+class Header extends React.Component {
   static propTypes = {
   
   }
@@ -22,7 +23,7 @@ class SearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+      hasSignedIn: false
     }
   }
 
@@ -30,9 +31,11 @@ class SearchBar extends React.Component {
     const {titleText} = this.state;
     return (
       <div styleName="top-part">
+
         <div styleName="top-column column-center">
           {titleText}
         </div>
+
         <div styleName="top-column column-left">
           <PushdownMenu>
             <PushdownItem name={"简体中文"} url={"#"} selected={true} />
@@ -40,10 +43,40 @@ class SearchBar extends React.Component {
             <PushdownItem name={"英文"} url={"https://www.ft.com/"} />
           </PushdownMenu>
         </div>
+
         <div styleName="top-column column-right">
-          <SignMenu signData= 
+          <SignMenu 
+            signData= {[
+              {
+                "url":"http://user.ftchinese.com/login",
+                "word":"登录",
+                "showTime":"before"
+              },
+             {
+                "url":"http://user.ftchinese.com/register",
+                "word":"免费注册",
+                "showTime":"before"
+              },
+              {
+                "url":"/users/mystories",
+                "word":"我的FT",
+                "showTime":"after"
+              },
+             {
+                "url":"/users/cp",
+                "word":"设置",
+                "showTime":"after"
+              },
+              {
+                "url":"http://user.ftchinese.com/logout",
+                "word":"登出",
+                "showTime":"after"
+              }
+            ]}
+            hasSignedIn = {this.state.hasSignedIn}
           />
         </div>
+
       </div>
     )
   }
