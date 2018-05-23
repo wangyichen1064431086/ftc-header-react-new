@@ -7,8 +7,12 @@ import CSSModules from 'react-css-modules';
 import header from '../scss/header.scss';//如果省略.scss，虽然在webpack构建本地测试环境时该文件找得到，但是在rollup构建生产环境时该文件找不到。
 
 import {PushdownMenu, PushdownItem} from '@ftchinese/ftc-pushdownmenu-react';
-
 import SignMenu from './SignMenu.js';
+import Nav from '@ftchinese/ftc-nav-react';
+import SearchBar from '@ftchinese/ftc-searchbar-react';
+
+
+import { signData, channelData} from './data.js';
 
 @CSSModules(header, {allowMultiple: true})
 class Header extends React.Component {
@@ -46,33 +50,7 @@ class Header extends React.Component {
 
         <div styleName="top-column column-right">
           <SignMenu 
-            signData= {[
-              {
-                "url":"http://user.ftchinese.com/login",
-                "word":"登录",
-                "showTime":"before"
-              },
-             {
-                "url":"http://user.ftchinese.com/register",
-                "word":"免费注册",
-                "showTime":"before"
-              },
-              {
-                "url":"/users/mystories",
-                "word":"我的FT",
-                "showTime":"after"
-              },
-             {
-                "url":"/users/cp",
-                "word":"设置",
-                "showTime":"after"
-              },
-              {
-                "url":"http://user.ftchinese.com/logout",
-                "word":"登出",
-                "showTime":"after"
-              }
-            ]}
+            signData= {signData}
             hasSignedIn = {this.state.hasSignedIn}
           />
         </div>
@@ -81,15 +59,19 @@ class Header extends React.Component {
     )
   }
 
-  
+  renderNav() {
+    return <Nav channels={channelData} dynamicnav={true} />
+  }
+
+  renderSearchBar() {
+    return <SearchBar postUrl="\search" placeholderText = "输入年月日‘xxxx-xx-xx’可搜索该日存档" />
+  }
   render() {
     return (
       <header styleName="header">
         {this.renderTopPart()}
         {this.renderNav()}
-        {this.renderSearchBar()}
-        {this.renderLoginOverlay()}
-      
+        {this.renderSearchBar()}      
       </header>
     );
   }
@@ -97,4 +79,4 @@ class Header extends React.Component {
 
 
 
-export  default SearchBar;
+export default Header;
