@@ -3,113 +3,104 @@
 $bgColor:#333;
 $textColor: #fff;
 
-
-
-.header {
+.container {
   font-family: Helvetica Neue,Verdana,Arial,Hiragino Sans GB,WenQuanYi Micro Hei,Heiti SC,STHeiti,Microsoft Yahei,SimSun,sans-serif;
   font-size: 16px;
-
-  height: 44px;
   width: 100%;
-  box-sizing: border-box;
+  position: relative;
+}
+
+/************top-part*************/
+.top-part {
+  height: 44px;
   background-color: $bgColor;
   color: $textColor;
-  padding: 0 10px;
-  margin: 0;
-  position: absolute;// 如果没有找到最近的非static定位的祖先元素，那么以初始包含块为基准(initial containing block),初始包含块不等于html也不等于body,而是以渲染内容的空间的坐标原点（左上）为基准
-  right: 0;
-  top: 0;
+  padding:0 10px;
+	font-size: 14px;
+  box-sizing: border-box;
   
-  @include oGridRespondTo('L') {
+  @include oGridRespondTo($until:'L') {//小于L的情况下position为fixed
+    position: fixed;
+    top:0;
+    width: 100%;
+  }
+  @include oGridRespondTo('L'){ //大于L的高度和padding
+    height:57px;
     padding: 0px 30px;
   }
-  @include oGridRespondTo('XL') {
+  @include oGridRespondTo('XL') {//大于XL的高度和边距
+    height: 57px;
     padding: 0px 74.5px;
   }
-
-  button {
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: transparent;
-    padding: 0;
-  }
-
-  input {
-    background-color: transparent;
-  }
 }
-
-.form {
-  height: 100%;  
-  margin: 0;
-  padding: 0;
-  margin-right: 44px;//块级元素默认width为100%,如果设置了margin-right, margin-left，那么宽度自然就是100%去掉 margin-right去掉margin-left, 
-  //如果不使用这种布局方式，可以使用cal(100%-44px)
+.content {
+  height:100%;
   position: relative;
-
-  .search-btn {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 44px;
-    height: 44px;
-    background-position: center;
-    background-size: 20px 20px;
-    background-repeat: no-repeat;
-    background-image: url(http://static.ftchinese.com/ftc-icons/svg/white/search-white.svg);
-  }
-  
-  .input-area {
-    height: 100%;
-    margin:0;
-    margin-left: 44px; 
-    
-    input {
-      width: 100%;
-      height: 100%;
-      border: 1px solid #a7a59b;
-      color: $textColor;
-      outline: none;
-      padding-left: 5px;
-      font-size:16px;
-    }
-  }
-  /*
-  .input-area {
-    display: block;
-    height: 100%;
-    margin:0;
-    margin-left: 44px;
-
-    border: 1px solid #a7a59b;
-    color: $textColor;
-    outline: none;
-    padding-left: 5px;
-    
-  }
-  */
 }
 
-.switch-btn {
-  position: absolute;
-  right:10px;
-  top: 0;
-  width:44px;
-  height:44px;
-  display: block;
-  background-position: center;
-  background-size:20px 20px;
+.top-column {
+  height: 100%;
+}
+.column-center {
+  width: 100%;
+}
+
+.home-title {
+  background-size: 98.7px 21px;
   background-repeat: no-repeat;
-  background-image: url(http://static.ftchinese.com/ftc-icons/svg/white/cross-white.svg);
+  background-position: center;
+  background-image:url(http://s.ftimg.net/img/svg/brand-ftc-masthead-white.svg);
+  @include oGridRespondTo('L') {
+    background-size: auto 36px;/*背景图片高度为36px，宽度按比例缩放*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(http://static.ftchinese.com/images/masthead36.png);
+  }
 }
 
-.initial-container { //初始状态只显示右侧开关按钮
-  width: 64px;
-  .form {
-    display: none;
+.tag-title {
+  background-size: 98.7px 21px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image:url(http://s.ftimg.net/img/svg/brand-ftc-masthead-white.svg);
+  color:transparent;
+  @include oGridRespondTo('L') {
+    background: transparent;
+    text-align: center;
+    line-height: 57px;
+    font-size: 32px;
+    color:#fff;
   }
-  .switch-btn {
-    background-image: url(http://static.ftchinese.com/ftc-icons/svg/white/search-white.svg);
+}
+
+.column-left {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width:120px;
+  text-align: left;
+}
+
+
+.left-brand {
+  width:100%;
+  height:100%;
+  background-image: url(https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fstatic.ftchinese.com%2Fimages%2Fmasthead36.png?source=ftchinese&width=80&height=57&fit=contain&from=next001);
+  background-size: 80px 17px;
+  background-position: 0px center;
+  background-repeat: no-repeat;
+}
+
+.responsive-show { //PushdownMenu组件和left-brand部分都是要使用responsive-show的
+  display: none;
+  @include oGridRespondTo('L') {
+    display: block;
   }
+}
+
+.column-right {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  text-align: right;
 }

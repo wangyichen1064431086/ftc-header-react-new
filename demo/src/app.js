@@ -1,8 +1,8 @@
-import SearchBar from '../../src/js/SearchBar.js';
+import Header from '../../src/js/Header.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 ReactDOM.render(
-  <SearchBar postUrl="#" />,
+  <Header />,
   document.getElementById('root')
 );

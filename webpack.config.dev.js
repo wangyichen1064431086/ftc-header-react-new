@@ -9,7 +9,7 @@ module.exports = {
 
   entry: [
     //'webpack-hot-middleware/client',
-      './demo/src/app.js'
+    './demo/src/app.js'
   ],
   output: {
      // options related to how webpack emits results

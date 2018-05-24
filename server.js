@@ -34,7 +34,7 @@ app.use(webpackMiddleware({
 router.get('/', async ctx => {
   console.log('get!!!!')
   ctx.body = await render('app.html', {
-    demoName: 'Ftc-SearchBar-React Demo'
+    demoName: 'Ftc-Header-React-New Demo'
   })
 });
 

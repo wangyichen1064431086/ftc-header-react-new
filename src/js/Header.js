@@ -27,7 +27,8 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hasSignedIn: false
+      hasSignedIn: false,
+      titleText: ""
     }
   }
 
@@ -35,26 +36,30 @@ class Header extends React.Component {
     const {titleText} = this.state;
     return (
       <div styleName="top-part">
+        <div styleName="content">
+          <div styleName="top-column column-center home-title">
+            {titleText}
+          </div>
 
-        <div styleName="top-column column-center">
-          {titleText}
+          <div styleName="top-column column-left responsive-show">
+            <PushdownMenu>
+              <PushdownItem name={"简体中文"} url={"#"} selected={true} />
+              <PushdownItem name={"繁体中文"} url={"http://big5.ftchinese.com/"} />
+              <PushdownItem name={"英文"} url={"https://www.ft.com/"} />
+            </PushdownMenu>
+
+            <div styleName="left-brand">
+            </div>
+          
+          </div>
+
+          <div styleName="top-column column-right">
+            <SignMenu 
+              signData= {signData}
+              hasSignedIn = {this.state.hasSignedIn}
+            />
+          </div>
         </div>
-
-        <div styleName="top-column column-left">
-          <PushdownMenu>
-            <PushdownItem name={"简体中文"} url={"#"} selected={true} />
-            <PushdownItem name={"繁体中文"} url={"http://big5.ftchinese.com/"} />
-            <PushdownItem name={"英文"} url={"https://www.ft.com/"} />
-          </PushdownMenu>
-        </div>
-
-        <div styleName="top-column column-right">
-          <SignMenu 
-            signData= {signData}
-            hasSignedIn = {this.state.hasSignedIn}
-          />
-        </div>
-
       </div>
     )
   }
@@ -68,7 +73,7 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <header styleName="header">
+      <header styleName="container">
         {this.renderTopPart()}
         {this.renderNav()}
         {this.renderSearchBar()}      
