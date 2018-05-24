@@ -28,12 +28,13 @@ class Header extends React.Component {
     super(props);
     this.state = {
       hasSignedIn: false,
-      titleText: ""
+      titleText: "",
+      isHome:true 
     }
   }
 
   renderTopPart() {
-    const {titleText} = this.state;
+    const {titleText, isHome} = this.state;
     return (
       <div styleName="top-part">
         <div styleName="content">
@@ -41,42 +42,56 @@ class Header extends React.Component {
             {titleText}
           </div>
 
-          <div styleName="top-column column-left responsive-show">
-            <PushdownMenu>
-              <PushdownItem name={"简体中文"} url={"#"} selected={true} />
-              <PushdownItem name={"繁体中文"} url={"http://big5.ftchinese.com/"} />
-              <PushdownItem name={"英文"} url={"https://www.ft.com/"} />
-            </PushdownMenu>
-
-            <div styleName="left-brand">
-            </div>
-          
+          <div styleName="top-column column-left">
+            { 
+              isHome ? (
+                <div styleName="pushdownmenu-tool">
+                  <PushdownMenu>
+                    <PushdownItem name={"简体中文"} url={"#"} selected={true} />
+                    <PushdownItem name={"繁体中文"} url={"http://big5.ftchinese.com/"} />
+                    <PushdownItem name={"英文"} url={"https://www.ft.com/"} />
+                  </PushdownMenu>
+                </div>
+              ) : (
+                <div styleName="left-brand">
+                </div>
+              )
+            }
           </div>
 
           <div styleName="top-column column-right">
-            <SignMenu 
-              signData= {signData}
-              hasSignedIn = {this.state.hasSignedIn}
-            />
+            <div styleName="signmenu-tool">
+              <SignMenu 
+                signData= {signData}
+                hasSignedIn = {this.state.hasSignedIn}
+              />
+            </div>
           </div>
         </div>
       </div>
     )
   }
 
-  renderNav() {
+
+  renderNavPart() {
     return <Nav channels={channelData} dynamicnav={true} />
   }
 
-  renderSearchBar() {
-    return <SearchBar postUrl="\search" placeholderText = "输入年月日‘xxxx-xx-xx’可搜索该日存档" />
+  renderSearchBarPart() {
+    return (
+      <div styleName="search-bar">
+        <div styleName="content">
+        <SearchBar postUrl="\search" placeholderText = "输入年月日‘xxxx-xx-xx’可搜索该日存档" />
+        </div>
+      </div>
+    )
   }
   render() {
     return (
       <header styleName="container">
         {this.renderTopPart()}
-        {this.renderNav()}
-        {this.renderSearchBar()}      
+        {this.renderNavPart()}
+        {this.renderSearchBarPart()}      
       </header>
     );
   }

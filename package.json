@@ -32,8 +32,8 @@
   "dependencies": {
     "@ftchinese/ftc-login-react": "^1.0.4",
     "@ftchinese/ftc-nav-react": "^1.0.2",
-    "@ftchinese/ftc-pushdownmenu-react": "^1.1.2",
-    "@ftchinese/ftc-searchbar-react": "^1.0.5",
+    "@ftchinese/ftc-pushdownmenu-react": "^1.1.3",
+    "@ftchinese/ftc-searchbar-react": "^1.1.1",
     "classnames": "^2.2.5",
     "extract-text-webpack-plugin": "^3.0.2",
     "immutable": "^3.8.2",

@@ -8,6 +8,7 @@ import Login from '@ftchinese/ftc-login-react';
 
 import signmenu from '../scss/signmenu.scss';
 
+@CSSModules(signmenu, { allowMultiple:true })
 class SignMenu extends React.Component { //待分离出去成为一个单独的component
   static proptypes = {
     signData: PropTypes.arrayOf(
@@ -36,16 +37,15 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
     const { signData, hasSignedIn } = this.props;
     return signData.map(item => {
       const show = hasSignedIn ? item.showTime === 'after' : item.showTime === 'before';
-      return 
-        { show &&
-          (
-            <a href={item.url} 
-              onClick = {item.word === '登录' && this.clickToSignIn}
-            >
-              {item.word}
-            </a>
-          )
-        }
+      console.log(`show:${show}`);
+      return show ? (
+          <a href={item.url} 
+            onClick = {item.word === '登录' && this.clickToSignIn}
+          >
+            {item.word}
+          </a>
+        ) : null;
+        
     })
   }
   renderLoginOverlay() {

@@ -1,8 +1,17 @@
 @import './responsivetool.scss';
+@mixin showOnlyWhenBiggerThanL { //PushdownMenu组件和left-brand部分都是要使用responsive-show的
+  display: none;
+  @include oGridRespondTo('L') {
+    display: block;
+  }
+}
 
 $bgColor:#333;
 $textColor: #fff;
-
+html,body {
+  margin: 0;
+  padding: 0;
+}
 .container {
   font-family: Helvetica Neue,Verdana,Arial,Hiragino Sans GB,WenQuanYi Micro Hei,Heiti SC,STHeiti,Microsoft Yahei,SimSun,sans-serif;
   font-size: 16px;
@@ -81,7 +90,15 @@ $textColor: #fff;
   text-align: left;
 }
 
-
+.pushdownmenu-tool {
+  // display: none;
+  // @include oGridRespondTo('L') {
+  //   display: block;
+  // }
+  @include showOnlyWhenBiggerThanL;
+  position: relative;
+  z-index: 10;//NOTE:只有position为absolute/relative/fixed中的一个，z-index才会生效
+}
 .left-brand {
   width:100%;
   height:100%;
@@ -89,18 +106,45 @@ $textColor: #fff;
   background-size: 80px 17px;
   background-position: 0px center;
   background-repeat: no-repeat;
+  // display: none;
+  // @include oGridRespondTo('L') {
+  //   display: block;
+  // }
+  @include showOnlyWhenBiggerThanL;
 }
 
-.responsive-show { //PushdownMenu组件和left-brand部分都是要使用responsive-show的
-  display: none;
-  @include oGridRespondTo('L') {
-    display: block;
-  }
-}
 
 .column-right {
   position: absolute;
   right: 0px;
   top: 0px;
   text-align: right;
+}
+.signmenu-tool {
+  // display: none;
+  // @include oGridRespondTo('L') {
+  //   display: block;
+  // }
+  @include showOnlyWhenBiggerThanL;
+}
+// search bar part 
+.search-bar {
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  padding:0;
+  width:100%;
+  box-sizing: border-box;
+  @include oGridRespondTo('L'){
+    padding: 0px 20px;
+    top:57px;
+    position: absolute;
+  }
+  @include oGridRespondTo('XL') {
+    padding: 0px 64.5px;
+    top:57px;
+
+  }
+
+ 
 }
