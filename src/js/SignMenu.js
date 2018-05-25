@@ -15,6 +15,7 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
       PropTypes.shape({
         word: PropTypes.string,
         url: PropTypes.string,
+        name: PropTypes.string,
         showTime: PropTypes.oneOf(['before','after'])
       })
     ),
@@ -25,7 +26,9 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
     super(props);
     this.state = {
       showLoginOverlay: false
-    }
+    };
+    this.clickToSignIn = this.clickToSignIn.bind(this);
+    
   }
   clickToSignIn(e) {
     e.preventDefault();
@@ -39,8 +42,8 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
       const show = hasSignedIn ? item.showTime === 'after' : item.showTime === 'before';
       console.log(`show:${show}`);
       return show ? (
-          <a href={item.url} 
-            onClick = {item.word === '登录' && this.clickToSignIn}
+          <a href={item.url} key={item.name}
+            onClick = {item.word === '登录' ? this.clickToSignIn : null}
           >
             {item.word}
           </a>

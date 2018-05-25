@@ -16,7 +16,7 @@ html,body {
   font-family: Helvetica Neue,Verdana,Arial,Hiragino Sans GB,WenQuanYi Micro Hei,Heiti SC,STHeiti,Microsoft Yahei,SimSun,sans-serif;
   font-size: 16px;
   width: 100%;
-  position: relative;
+  position: relative; //思考：如何让其min-width；240px生效?
 }
 
 /************top-part*************/
@@ -27,7 +27,7 @@ html,body {
   padding:0 10px;
 	font-size: 14px;
   box-sizing: border-box;
-  
+  position: relative;
   @include oGridRespondTo($until:'L') {//小于L的情况下position为fixed
     position: fixed;
     top:0;
@@ -54,7 +54,8 @@ html,body {
   width: 100%;
 }
 
-.home-title {
+.home-default-title {
+  height: 100%;
   background-size: 98.7px 21px;
   background-repeat: no-repeat;
   background-position: center;
@@ -67,20 +68,44 @@ html,body {
   }
 }
 
-.tag-title {
-  background-size: 98.7px 21px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image:url(http://s.ftimg.net/img/svg/brand-ftc-masthead-white.svg);
-  color:transparent;
-  @include oGridRespondTo('L') {
-    background: transparent;
-    text-align: center;
-    line-height: 57px;
-    font-size: 32px;
-    color:#fff;
+.home-text-title {
+  text-align: center;
+  height: 57px;
+  line-height: 57px;
+  font-size: 32px;
+  @include oGridRespondTo($until:'L') {
+    height:44px;
+    line-height: 44px;
+    font-size:22px;
   }
 }
+.channel-title {
+  position: absolute; 
+  top:0;
+  width:100%;//待查证：子元素改变position好像就不能直接继承父元素的宽度的100%
+  text-align: center;
+  height: 57px;
+  line-height: 57px;
+  font-size: 32px;
+  background:$bgColor; //这里要设置background-color才能覆盖home-text-title，因为background-color默认值是transparent
+  @include oGridRespondTo($until: 'L') {
+    display: none;
+  }
+}
+// .tag-title {
+//   background-size: 98.7px 21px;
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   background-image:url(http://s.ftimg.net/img/svg/brand-ftc-masthead-white.svg);
+//   color:transparent;
+//   @include oGridRespondTo('L') {
+//     background: transparent;
+//     text-align: center;
+//     line-height: 57px;
+//     font-size: 32px;
+//     color:#fff;
+//   }
+// }
 
 .column-left {
   position: absolute;
@@ -127,7 +152,12 @@ html,body {
   // }
   @include showOnlyWhenBiggerThanL;
 }
-// search bar part 
+
+/*************nav-part***************/
+.nav-part {
+  position: relative; //因为在尺寸小于L时，top-part的position为fixed,如果此时nav-part的position还为static，那么其必然会被position不为static的top-part覆盖……
+}
+/*************search bar part***********/ 
 .search-bar {
   position: fixed;
   right: 0px;
@@ -143,8 +173,5 @@ html,body {
   @include oGridRespondTo('XL') {
     padding: 0px 64.5px;
     top:57px;
-
   }
-
- 
 }
