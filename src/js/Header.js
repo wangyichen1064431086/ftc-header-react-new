@@ -28,16 +28,16 @@ class Header extends React.Component {
     ),
     channelData: PropTypes.arrayOf( // data for Nav
       PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          order: PropTypes.number.isRequired,
-          url: PropTypes.string,
-          subs: PropTypes.arrayOf(
-              PropTypes.shape({
-                  name: PropTypes.string.isRequired,
-                  order: PropTypes.number.isRequired,
-                  url: PropTypes.string
-              })
-          )
+        name: PropTypes.string.isRequired,
+        order: PropTypes.number.isRequired,
+        url: PropTypes.string,
+        subs: PropTypes.arrayOf(
+            PropTypes.shape({
+                name: PropTypes.string.isRequired,
+                order: PropTypes.number.isRequired,
+                url: PropTypes.string
+            })
+        )
       })
     )
   }
@@ -50,44 +50,45 @@ class Header extends React.Component {
     super(props);
     this.state = {
       hasSignedIn: false,
+      //selectedTopChannelOrder: 0,
       selectedTopChannelName: "",
+      //selectedSubChannelOrder: -1,
       selectedSubChannelName: "",
-      isHome:true 
+      isHome: true
     }
     this.callbackForNav = this.callbackForNav.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      isHome:this.refs.navPart.props.defaultSelectedTopChannelOrder === 0 && this.refs.navPart.props.defaultSelectedSubChannelOrder === -1 //NOTE：切记this.refs在componentDidMount时才能访问
+    })
   }
   callbackForNav(gottenData) {
     console.log(`Gotten nav data:`);
     console.log(gottenData);
-    if(gottenData.selectedTopChannelOrder !==0 && gottenData.selectedTopChannelName) {
-      this.setState({ //待思考：这里调用setState不会引发循环，但是它确实是在外层component的render中调用的，虽然是在Nav的componentDidMount()中调用的。。。待研究
-        selectedTopChannelName:gottenData.selectedTopChannelName,
-        isHome: false
-      })
-    }
-    if(gottenData.selectedSubChannelOrder !== -1 && gottenData.selectedSubChannelName) {
-      this.setState({
-        selectedSubChannelName:gottenData.selectedSubChannelName,
-        isHome: false
-      })
-    }
+    const { selectedTopChannelOrder, selectedSubChannelOrder, selectedTopChannelName, selectedSubChannelName } = gottenData;
+    this.setState({//待思考：这里调用setState不会引发循环，但是它确实是在外层component的render中调用的，但它是在Nav的componentDidMount()中调用的。。。待研究
+      selectedTopChannelName: selectedTopChannelName,
+      selectedSubChannelName: selectedSubChannelName,
+      isHome: selectedTopChannelOrder ===0 && selectedSubChannelOrder === -1 
+    })
   }
   renderTopPart() {
+    // console.log('this.state when renderTopPart:');
+    // console.log(this.state);
     const { selectedTopChannelName, selectedSubChannelName, isHome } = this.state;
     const { customHomeTitle } = this.props;
-    // const topColumnCenterStyle = classnames({
-    //   "top-column": true,
-    //   "column-center": true,
-    //   "home-default-title": isHome && customHomeTitle === '',
-    //   "home-text-title": isHome && customHomeTitle !== '',
-    //   "channel-title": textForTitle !== ''
-    // });
+    console.log(`isHome:${isHome}`);
     const channelTitle = !isHome ? (selectedSubChannelName !== '' ? selectedSubChannelName : (selectedTopChannelName !== '' ? selectedTopChannelName : '')) : '';
     const homeTitleStyle = classnames({
       "home-default-title": customHomeTitle === '',
       "home-text-title": customHomeTitle !== '',
     });
-
+    const leftBrandStyle = classnames({
+      "left-default-brand": customHomeTitle === '',
+      "left-text-brand": customHomeTitle !== ''
+    })
     return (
       <div styleName="top-part">
         <div styleName="content">
@@ -95,7 +96,7 @@ class Header extends React.Component {
             <div styleName={homeTitleStyle}>
               {customHomeTitle}
             </div>
-            { /*在不是Home的情况下显示channelTitle覆盖homeTitleStyle,但是该样式决定了其在mobile的时候不可见 */
+            { /*在不是Home的情况下显示channelTitle覆盖homeTitleStyle,同时该样式决定了其在mobile的时候不可见 */
               !isHome && (
                 <div styleName="channel-title">
                   {channelTitle}
@@ -116,7 +117,8 @@ class Header extends React.Component {
                   </PushdownMenu>
                 </div>
               ) : (
-                <div styleName="left-brand"> {/* TODO:这里需要考虑为custom home title时这里要以文字的形式展现 */}
+                <div styleName={leftBrandStyle}>
+                   {customHomeTitle}
                 </div>
               )
             }
@@ -137,10 +139,9 @@ class Header extends React.Component {
 
 
   renderNavPart() {
-
     return (
       <div styleName="nav-part">
-        <Nav channels={channelData} dynamicnav={false} defaultSelectedTopChannelOrder={1} defaultSelectedSubChannelOrder={-1} callbackFunc={this.callbackForNav}/>
+        <Nav channels={channelData} dynamicnav={true} ref="navPart" defaultSelectedTopChannelOrder={1} defaultSelectedSubChannelOrder={1} callbackFunc={this.callbackForNav}/>
       </div>
     )
   }
@@ -154,16 +155,13 @@ class Header extends React.Component {
       </div>
     )
   }
-  renderNavigationForMobile() {
 
-  }
   render() {
     return (
       <header styleName="container">
         {this.renderTopPart()}
         {this.renderNavPart()}
         {this.renderSearchBarPart()} 
-        {this.renderNavigationForMobile()}     
       </header>
     );
   }

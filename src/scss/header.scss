@@ -92,26 +92,12 @@ html,body {
     display: none;
   }
 }
-// .tag-title {
-//   background-size: 98.7px 21px;
-//   background-repeat: no-repeat;
-//   background-position: center;
-//   background-image:url(http://s.ftimg.net/img/svg/brand-ftc-masthead-white.svg);
-//   color:transparent;
-//   @include oGridRespondTo('L') {
-//     background: transparent;
-//     text-align: center;
-//     line-height: 57px;
-//     font-size: 32px;
-//     color:#fff;
-//   }
-// }
 
 .column-left {
   position: absolute;
   left: 0px;
   top: 0px;
-  width:120px;
+  width:auto;
   text-align: left;
 }
 
@@ -124,8 +110,8 @@ html,body {
   position: relative;
   z-index: 10;//NOTE:只有position为absolute/relative/fixed中的一个，z-index才会生效
 }
-.left-brand {
-  width:100%;
+.left-default-brand {
+  width:120px;
   height:100%;
   background-image: url(https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fstatic.ftchinese.com%2Fimages%2Fmasthead36.png?source=ftchinese&width=80&height=57&fit=contain&from=next001);
   background-size: 80px 17px;
@@ -135,6 +121,14 @@ html,body {
   // @include oGridRespondTo('L') {
   //   display: block;
   // }
+  @include showOnlyWhenBiggerThanL;
+}
+.left-text-brand {
+  height:57px;
+  max-width: 200px;
+  font-size: 22px;
+  line-height: 57px;
+  text-align: left;
   @include showOnlyWhenBiggerThanL;
 }
 

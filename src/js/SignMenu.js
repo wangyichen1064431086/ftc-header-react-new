@@ -28,12 +28,19 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
       showLoginOverlay: false
     };
     this.clickToSignIn = this.clickToSignIn.bind(this);
-    
+    this.clickToCloseLoginOverlay = this.clickToCloseLoginOverlay.bind(this);
   }
+
   clickToSignIn(e) {
     e.preventDefault();
+    console.log('click to sign in');
     this.setState({
       showLoginOverlay: true
+    });
+  }
+  clickToCloseLoginOverlay() {
+    this.setState({
+      showLoginOverlay: false
     });
   }
   renderMenuList() {
@@ -52,9 +59,14 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
     })
   }
   renderLoginOverlay() {
-    return 
-      this.state.showLoginOverlay &&
-      <Login postUrl="/users/login" findPasswordUrl="http://www.ftchinese.com/users/findpassword" registerUrl="http://user.ftchinese.com/register" />
+    const {showLoginOverlay} = this.state;
+    return (
+      showLoginOverlay &&
+      <Login postUrl="/users/login" findPasswordUrl="http://www.ftchinese.com/users/findpassword" registerUrl="http://user.ftchinese.com/register"
+      closeFunc={this.clickToCloseLoginOverlay} 
+      forcedShow={showLoginOverlay}
+      />
+    )
   }
   render() {
     return (
