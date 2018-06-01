@@ -5,7 +5,6 @@ import classnames from 'classnames';
 import CSSModules from 'react-css-modules';
 
 import Login from '@ftchinese/ftc-login-react';
-
 import signmenu from '../scss/signmenu.scss';
 
 @CSSModules(signmenu, { allowMultiple:true })
@@ -47,9 +46,13 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
     const { signData, hasSignedIn } = this.props;
     return signData.map(item => {
       const show = hasSignedIn ? item.showTime === 'after' : item.showTime === 'before';
+      const itemStyle = classnames({
+        'item--nosigned': !hasSignedIn,
+        'item--signed': hasSignedIn
+      })
       console.log(`show:${show}`);
       return show ? (
-          <a href={item.url} key={item.name}
+          <a href={item.url} key={item.name} styleName={itemStyle}
             onClick = {item.word === '登录' ? this.clickToSignIn : null}
           >
             {item.word}

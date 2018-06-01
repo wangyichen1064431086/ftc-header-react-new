@@ -1,3 +1,21 @@
+const pushdownMenuData = [
+  {
+    name: "相关资源",
+    url: "http://www.ftchinese.com",
+    selected: true
+  },
+  {
+    name: "FTC首页",
+    url: "http://www.ftchinese.com",
+    selected: false
+  },
+  {
+    name: "FT首页",
+    url: "https://www.ft.com/",
+    selected: false
+  },
+];
+
 const signData = [
   {
     "url":"http://user.ftchinese.com/login",
@@ -188,4 +206,4 @@ const channelData = [
   }
 ];
 
-export {  signData, channelData };
+export {  pushdownMenuData, signData, channelData };

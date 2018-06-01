@@ -11,13 +11,22 @@ import SignMenu from './SignMenu.js';
 import Nav from '@ftchinese/ftc-nav-react';
 import SearchBar from '@ftchinese/ftc-searchbar-react';
 
+import {getCookie} from './utils';
 
-import { signData, channelData} from './data.js';
 
 @CSSModules(header, {allowMultiple: true})
 class Header extends React.Component {
   static propTypes = {
     customHomeTitle: PropTypes.string, //自定义的Home标题名称，默认为'',如果为''那么就用提供的FT中文网Logo图片
+
+    pushdownMenuData: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        url: PropTypes.string.isRequired,
+        selected: PropTypes.bool.isRequired,
+      })
+    ),
+
     signData:PropTypes.arrayOf( // data For SignMenu
       PropTypes.shape({
         word: PropTypes.string,
@@ -26,7 +35,10 @@ class Header extends React.Component {
         showTime: PropTypes.oneOf(['before','after'])
       })
     ),
-    channelData: PropTypes.arrayOf( // data for Nav
+    signedFlagCookieName: PropTypes.string,
+
+    dynamicNav: PropTypes.bool,// data for Nav
+    navChannelData: PropTypes.arrayOf( 
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         order: PropTypes.number.isRequired,
@@ -39,17 +51,24 @@ class Header extends React.Component {
             })
         )
       })
-    )
+    ),
+    navDefaultTopOrder: PropTypes.number,
+    navDefaultSubOrder: PropTypes.number
   }
 
   static defaultProps = {
-    customHomeTitle:''
+    customHomeTitle:'',
+    signedFlagCookieName: 'USER_NAME',
+    defaultSelectedTopChannelOrder: 0,
+    defaultSelectedSubChannelOrder: -1,
+    dynamicNav: false
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      hasSignedIn: false,
+      hasSignedIn: !!getCookie(this.props.signedFlagCookieName)
+      ,
       //selectedTopChannelOrder: 0,
       selectedTopChannelName: "",
       //selectedSubChannelOrder: -1,
@@ -61,12 +80,13 @@ class Header extends React.Component {
 
   componentDidMount() {
     this.setState({
-      isHome:this.refs.navPart.props.defaultSelectedTopChannelOrder === 0 && this.refs.navPart.props.defaultSelectedSubChannelOrder === -1 //NOTE：切记this.refs在componentDidMount时才能访问
+     // isHome:this.refs.navPart.props.defaultSelectedTopChannelOrder === 0 && this.refs.navPart.props.defaultSelectedSubChannelOrder === -1 //NOTE：切记this.refs在componentDidMount时才能访问
+     isHome: this.props.navDefaultTopOrder === 0 && this.props.navDefaultSubOrder === -1
     })
   }
   callbackForNav(gottenData) {
-    console.log(`Gotten nav data:`);
-    console.log(gottenData);
+    // console.log(`Gotten nav data:`);
+    // console.log(gottenData);
     const { selectedTopChannelOrder, selectedSubChannelOrder, selectedTopChannelName, selectedSubChannelName } = gottenData;
     this.setState({//待思考：这里调用setState不会引发循环，但是它确实是在外层component的render中调用的，但它是在Nav的componentDidMount()中调用的。。。待研究
       selectedTopChannelName: selectedTopChannelName,
@@ -78,7 +98,7 @@ class Header extends React.Component {
     // console.log('this.state when renderTopPart:');
     // console.log(this.state);
     const { selectedTopChannelName, selectedSubChannelName, isHome } = this.state;
-    const { customHomeTitle } = this.props;
+    const { customHomeTitle, pushdownMenuData, signData } = this.props;
     console.log(`isHome:${isHome}`);
     const channelTitle = !isHome ? (selectedSubChannelName !== '' ? selectedSubChannelName : (selectedTopChannelName !== '' ? selectedTopChannelName : '')) : '';
     const homeTitleStyle = classnames({
@@ -88,7 +108,8 @@ class Header extends React.Component {
     const leftBrandStyle = classnames({
       "left-default-brand": customHomeTitle === '',
       "left-text-brand": customHomeTitle !== ''
-    })
+    });
+
     return (
       <div styleName="top-part">
         <div styleName="content">
@@ -111,9 +132,14 @@ class Header extends React.Component {
               isHome ? (
                 <div styleName="pushdownmenu-tool">
                   <PushdownMenu>
+                    {/*
                     <PushdownItem name={"简体中文"} url={"#"} selected={true} />
                     <PushdownItem name={"繁体中文"} url={"http://big5.ftchinese.com/"} />
                     <PushdownItem name={"英文"} url={"https://www.ft.com/"} />
+                     */}
+                     {pushdownMenuData.map(item => (
+                       <PushdownItem name={item.name} url={item.url} selected={item.selected} key={item.name} />
+                     ))}
                   </PushdownMenu>
                 </div>
               ) : (
@@ -139,9 +165,10 @@ class Header extends React.Component {
 
 
   renderNavPart() {
+    const {navChannelData, navDefaultTopOrder, navDefaultSubOrder, dynamicNav} = this.props;
     return (
       <div styleName="nav-part">
-        <Nav channels={channelData} dynamicnav={true} ref="navPart" defaultSelectedTopChannelOrder={1} defaultSelectedSubChannelOrder={1} callbackFunc={this.callbackForNav}/>
+        <Nav channels={navChannelData} dynamicnav={dynamicNav} ref="navPart" defaultSelectedTopChannelOrder={navDefaultTopOrder} defaultSelectedSubChannelOrder={navDefaultSubOrder} callbackFunc={this.callbackForNav}/>
       </div>
     )
   }
