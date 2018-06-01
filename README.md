@@ -4,6 +4,8 @@
 
 The new version for ftc-header-react.
 
+The dependency components of it includes '@ftchinese/ftc-pushdownmenu-react','@ftchinese/ftc-nav-react','@ftchinese/ftc-searchbar-react', '@ftchinese/ftc-login-react'.
+
 ## Install
 
 ```cmd
