@@ -1,4 +1,5 @@
-import Header from '../../src/js/Header.js';
+//import Header from '../../src/js/Header.js';
+import Header from '../../build/index.es.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 

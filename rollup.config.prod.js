@@ -5,10 +5,10 @@ import replace from 'rollup-plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 
 export default {
-  input: './src/js/SearchBar.js',
+  input: './src/js/Header.js',
   output:[
     {
-      name:'SearchBar',
+      name:'Header',
       sourcemap: true,
       
       globals:{
@@ -21,7 +21,7 @@ export default {
       
     },
     {
-      name:'SearchBar',
+      name:'Header',
       sourcemap: true,
       
       globals:{

@@ -32,7 +32,6 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
 
   clickToSignIn(e) {
     e.preventDefault();
-    console.log('click to sign in');
     this.setState({
       showLoginOverlay: true
     });
@@ -50,7 +49,6 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
         'item--nosigned': !hasSignedIn,
         'item--signed': hasSignedIn
       })
-      console.log(`show:${show}`);
       return show ? (
           <a href={item.url} key={item.name} styleName={itemStyle}
             onClick = {item.word === '登录' ? this.clickToSignIn : null}

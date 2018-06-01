@@ -8,7 +8,7 @@ function getCookie(name) {
   const valueStartIndex = nameStartIndex + nameLen + 1;
   let valueEndIndex = cookieStr.indexOf(';', valueStartIndex);
 
-  if( !valueStartIndex && name !== cookieStr.substring(0, nameLen)) {
+  if( !valueStartIndex && name !== cookieStr.substring(0, nameLen)) {////当startIndex为0的时候说明该name是第一个cookie,那name必须就是cookieStr.substring(0, name.length)
     return null;
   }
   

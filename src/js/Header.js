@@ -166,7 +166,7 @@ class Header extends React.Component {
     const {navChannelData, navDefaultTopOrder, navDefaultSubOrder, dynamicNav} = this.props;
     return (
       <div styleName="nav-part">
-        <Nav channels={navChannelData} dynamicnav={dynamicNav} ref="navPart" defaultSelectedTopChannelOrder={navDefaultTopOrder} defaultSelectedSubChannelOrder={navDefaultSubOrder} callbackFunc={this.callbackForNav}/>
+        <Nav channels={navChannelData} dynamicnav={dynamicNav}  defaultSelectedTopChannelOrder={navDefaultTopOrder} defaultSelectedSubChannelOrder={navDefaultSubOrder} callbackFunc={this.callbackForNav}/>
       </div>
     )
   }
@@ -192,7 +192,5 @@ class Header extends React.Component {
     );
   }
 }
-
-
 
 export default Header;
