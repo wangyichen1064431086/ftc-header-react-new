@@ -7,7 +7,7 @@ import { pushdownMenuData, signData, channelData} from './data.js';
 ReactDOM.render(
   <Header 
     customHomeTitle="广告管理系统"
-    
+
     pushdownMenuData={pushdownMenuData}
 
     signData={signData}
@@ -17,6 +17,9 @@ ReactDOM.render(
     navChannelData={channelData}
     navDefaultTopOrder={1}
     navDefaultSubOrder={1}
+
+    searchPostUrl={"/search"}
+    searchPlaceHolder={"输入年月日‘xxxx-xx-xx’可搜索该日存档" }
   />,
   document.getElementById('root')
 );

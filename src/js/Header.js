@@ -53,7 +53,10 @@ class Header extends React.Component {
       })
     ),
     navDefaultTopOrder: PropTypes.number,
-    navDefaultSubOrder: PropTypes.number
+    navDefaultSubOrder: PropTypes.number,
+
+    searchPostUrl: PropTypes.string,
+    searchPlaceHolder: PropTypes.string
   }
 
   static defaultProps = {
@@ -132,11 +135,6 @@ class Header extends React.Component {
               isHome ? (
                 <div styleName="pushdownmenu-tool">
                   <PushdownMenu>
-                    {/*
-                    <PushdownItem name={"简体中文"} url={"#"} selected={true} />
-                    <PushdownItem name={"繁体中文"} url={"http://big5.ftchinese.com/"} />
-                    <PushdownItem name={"英文"} url={"https://www.ft.com/"} />
-                     */}
                      {pushdownMenuData.map(item => (
                        <PushdownItem name={item.name} url={item.url} selected={item.selected} key={item.name} />
                      ))}
@@ -174,10 +172,11 @@ class Header extends React.Component {
   }
 
   renderSearchBarPart() {
+    const { searchPostUrl, searchPlaceHolder } = this.props;
     return (
       <div styleName="search-bar">
         <div styleName="content">
-        <SearchBar postUrl="\search" placeholderText = "输入年月日‘xxxx-xx-xx’可搜索该日存档" />
+        <SearchBar postUrl={searchPostUrl} placeholderText = {searchPlaceHolder}/>
         </div>
       </div>
     )
