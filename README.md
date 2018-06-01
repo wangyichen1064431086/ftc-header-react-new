@@ -9,7 +9,7 @@ The new version for ftc-header-react.
 ```cmd
 cd yourProject
 npm install react react-dom prop-types --save
-npm install "@ftchinese/fftc-header-react-new" --save 
+npm install "@ftchinese/ftc-header-react-new" --save 
 ```
 
 ## Usage
@@ -74,7 +74,7 @@ ReactDOM.render(
         "showTime":"after"
       }
     ]}
-    
+
     signedFlagCookieName='usernameflag'
 
     dynamicNav={false}
