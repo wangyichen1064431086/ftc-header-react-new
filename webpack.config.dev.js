@@ -13,7 +13,7 @@ module.exports = {
   ],
   output: {
      // options related to how webpack emits results
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, '.tmp'),
     filename: 'bundle.js',
     publicPath: '/static/',
   },
