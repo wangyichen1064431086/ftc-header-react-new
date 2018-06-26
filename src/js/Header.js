@@ -166,7 +166,7 @@ class Header extends React.Component {
     const {navChannelData, navDefaultTopOrder, navDefaultSubOrder, dynamicNav} = this.props;
     return (
       <div styleName="nav-part">
-        <Nav channels={navChannelData} dynamicnav={dynamicNav}  defaultSelectedTopChannelOrder={navDefaultTopOrder} defaultSelectedSubChannelOrder={navDefaultSubOrder} callbackFunc={this.callbackForNav}/>
+        <Nav channels={navChannelData} dynamicnav={dynamicNav}  defaultSelectedTopChannelOrder={navDefaultTopOrder} defaultSelectedSubChannelOrder={navDefaultSubOrder} callbackFunc={this.callbackForNav} sticky="top" />
       </div>
     )
   }
@@ -176,7 +176,7 @@ class Header extends React.Component {
     return (
       <div styleName="search-bar">
         <div styleName="content">
-        <SearchBar postUrl={searchPostUrl} placeholderText = {searchPlaceHolder}/>
+        <SearchBar postUrl={searchPostUrl} placeholderText = {searchPlaceHolder} sticky={true}/>
         </div>
       </div>
     )
