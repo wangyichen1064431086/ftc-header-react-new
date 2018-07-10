@@ -1,5 +1,5 @@
-//import Header from '../../src/js/Header.js';
-import Header from '../../build/index.es.js';
+import Header from '../../src/js/Header.js';
+//import Header from '../../build/index.es.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -11,7 +11,7 @@ ReactDOM.render(
 
     pushdownMenuData={pushdownMenuData}
 
-    signData={signData}
+    // signData={signData}
     signedFlagCookieName='USER_NAME'
 
     dynamicNav={true}

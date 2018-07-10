@@ -43,6 +43,9 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
   }
   renderMenuList() {
     const { signData, hasSignedIn } = this.props;
+    if (!signData || signData.length === 0) {
+      return null;
+    }
     return signData.map(item => {
       const show = hasSignedIn ? item.showTime === 'after' : item.showTime === 'before';
       const itemStyle = classnames({

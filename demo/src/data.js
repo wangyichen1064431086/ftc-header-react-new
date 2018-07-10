@@ -29,12 +29,6 @@ const signData = [
     "name":"signUp",
     "showTime":"before"
   },
-  {
-    "url":"/users/mystories",
-    "word":"我的FT",
-    "name":"myFT",
-    "showTime":"after"
-  },
  {
     "url":"/users/cp",
     "word":"设置",

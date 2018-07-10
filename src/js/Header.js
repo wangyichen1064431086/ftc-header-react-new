@@ -150,10 +150,13 @@ class Header extends React.Component {
 
           <div styleName="top-column column-right">
             <div styleName="signmenu-tool">
+             { 
+              signData && signData.length >0 &&
               <SignMenu 
                 signData= {signData}
                 hasSignedIn = {this.state.hasSignedIn}
               />
+             }
             </div>
           </div>
         </div>
