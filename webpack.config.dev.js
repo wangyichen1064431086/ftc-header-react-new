@@ -4,7 +4,7 @@ const sassLoader = 'style-loader!css-loader?modules&importLoaders&localIdentName
 const sassLoaderDemo = 'style-loader!css-loader!sass-loader?sourceMap=true&sourceMapContents=true';
 module.exports = {
   mode:'development',
-  devtool: 'cheap-module-eval-source-map',//This option controls if and how source maps are generated.
+  //devtool: 'cheap-module-eval-source-map',//This option controls if and how source maps are generated.
   // enhance debugging by adding meta info for the browser devtools(通过为浏览器devtools添加元信息来增强调试功能)
 
   entry: [
