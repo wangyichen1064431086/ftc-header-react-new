@@ -12,14 +12,15 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
   static proptypes = {
     signData: PropTypes.arrayOf(
       PropTypes.shape({
-        word: PropTypes.string,
+        word: PropTypes.string.isRequired,
         url: PropTypes.string,
-        name: PropTypes.string,
+        name: PropTypes.string.isRequired,
         showTime: PropTypes.oneOf(['before','after'])
       })
     ),
     hasSignedIn: PropTypes.bool
   }
+
 
   constructor(props) {
     super(props);
@@ -46,14 +47,20 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
     if (!signData || signData.length === 0) {
       return null;
     }
-    return signData.map(item => {
-      const show = hasSignedIn ? item.showTime === 'after' : item.showTime === 'before';
+    return signData.map((item, index) => {
+      if(!item.word) {
+        return null;
+      }
+      const showTime = item.showTime || 'before';
+      const url = item.url || '#';
+      const keyname = item.name || index;
+      const show = hasSignedIn ? showTime === 'after' : showTime === 'before';
       const itemStyle = classnames({
         'item--nosigned': !hasSignedIn,
         'item--signed': hasSignedIn
       })
       return show ? (
-          <a href={item.url} key={item.name} styleName={itemStyle}
+          <a href={url} key={keyname} styleName={itemStyle}
             onClick = {item.word === '登录' ? this.clickToSignIn : null}
           >
             {item.word}

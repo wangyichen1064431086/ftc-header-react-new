@@ -17,7 +17,6 @@ const pushdownMenuData = [
 
 const signData = [
   {
-    "url":"http://user.ftchinese.com/login",
     "word":"登录",
     "name":"signIn",
     "showTime":"before"

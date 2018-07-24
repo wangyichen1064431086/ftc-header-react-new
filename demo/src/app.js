@@ -14,7 +14,7 @@ ReactDOM.render(
     signData={signData}
     signedFlagCookieName='USER_NAME'
 
-    dynamicNav={true}
+    dynamicNav={false}
     navChannelData={channelData}
     navDefaultTopOrder={0}
     navDefaultSubOrder={-1}

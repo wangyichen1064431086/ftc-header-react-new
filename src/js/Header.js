@@ -29,9 +29,9 @@ class Header extends React.Component {
 
     signData:PropTypes.arrayOf( // data For SignMenu
       PropTypes.shape({
-        word: PropTypes.string,
+        word: PropTypes.string.isRequired,
         url: PropTypes.string,
-        name: PropTypes.string,
+        name: PropTypes.string.isRequired,
         showTime: PropTypes.oneOf(['before','after'])
       })
     ),
@@ -69,8 +69,9 @@ class Header extends React.Component {
 
   constructor(props) {
     super(props);
+    const {signedFlagCookieName} = this.props;
     this.state = {
-      hasSignedIn: !!getCookie(this.props.signedFlagCookieName)
+      hasSignedIn: signedFlagCookieName ? !!getCookie(this.props.signedFlagCookieName) : false
       ,
       //selectedTopChannelOrder: 0,
       selectedTopChannelName: "",
@@ -133,13 +134,15 @@ class Header extends React.Component {
           <div styleName="top-column column-left">
             { 
               isHome ? (
-                <div styleName="pushdownmenu-tool">
-                  <PushdownMenu>
-                     {pushdownMenuData.map(item => (
-                       <PushdownItem name={item.name} url={item.url} selected={item.selected} key={item.name} />
-                     ))}
-                  </PushdownMenu>
-                </div>
+                pushdownMenuData ? (
+                  <div styleName="pushdownmenu-tool">
+                    <PushdownMenu>
+                      {pushdownMenuData.map(item => (
+                        <PushdownItem name={item.name} url={item.url} selected={item.selected} key={item.name} />
+                      ))}
+                    </PushdownMenu>
+                  </div>
+                ) : null
               ) : (
                 <div styleName={leftBrandStyle}>
                    {customHomeTitle}
@@ -167,22 +170,22 @@ class Header extends React.Component {
 
   renderNavPart() {
     const {navChannelData, navDefaultTopOrder, navDefaultSubOrder, dynamicNav} = this.props;
-    return (
+    return navChannelData ? (
       <div styleName="nav-part">
         <Nav channels={navChannelData} dynamicnav={dynamicNav}  defaultSelectedTopChannelOrder={navDefaultTopOrder} defaultSelectedSubChannelOrder={navDefaultSubOrder} callbackFunc={this.callbackForNav} sticky="top" />
       </div>
-    )
+    ) : null;
   }
 
   renderSearchBarPart() {
     const { searchPostUrl, searchPlaceHolder } = this.props;
-    return (
+    return searchPostUrl ?(
       <div styleName="search-bar">
         <div styleName="content">
         <SearchBar postUrl={searchPostUrl} placeholderText = {searchPlaceHolder} sticky={true}/>
         </div>
       </div>
-    )
+    ) : null;
   }
 
   render() {
