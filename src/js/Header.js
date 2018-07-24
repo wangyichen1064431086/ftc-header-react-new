@@ -22,7 +22,7 @@ class Header extends React.Component {
     pushdownMenuData: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        url: PropTypes.string.isRequired,
+        url: PropTypes.string,
         selected: PropTypes.bool.isRequired,
       })
     ),

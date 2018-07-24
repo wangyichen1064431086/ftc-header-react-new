@@ -1,7 +1,6 @@
 const pushdownMenuData = [
   {
     name: "相关资源",
-    url:'',
     selected: true
   },
   {

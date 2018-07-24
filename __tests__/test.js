@@ -5,7 +5,6 @@ jest.unmock('../src/js/Header');//指示模块系统不应从require（）返回
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
-//import Cookies from 'universal-cookie';
 
 import Header from '../src/js/Header.js';
 import { pushdownMenuData, signData, channelData} from '../testData/data1.js';
@@ -134,59 +133,3 @@ describe('Test for showing home or channel', () => {
     expect(navPartNode.querySelector('[class*="item-sub--selected"]').textContent).toBe('商业');
   });
 });
-
-/*
-describe('Test for logined or not logined', () => {
-  it('Not logined', () => {
-    const header = ReactTestUtils.renderIntoDocument(
-      <Header 
-        customHomeTitle="广告管理系统"
-
-        pushdownMenuData={pushdownMenuData}
-
-        signData={signData}
-        signedFlagCookieName='USER_NAME'
-
-        dynamicNav={true}
-        navChannelData={channelData}
-        navDefaultTopOrder={0}
-        navDefaultSubOrder={-1}
-
-        searchPostUrl={"/search"}
-        searchPlaceHolder={"输入年月日‘xxxx-xx-xx’可搜索该日存档" }
-      />
-    );
-    const headerNode = ReactDOM.findDOMNode(header);
-    expect(headerNode.querySelector('.signmenu-tool .item--nosigned').textContent).toBe('登录');
-    expect(headerNode.querySelector('.signmenu-tool .item--nosigned:nth-child(2)').textContent).toBe('免费注册');
-  });
-
-  it('Logined', () => {
-    const header = ReactTestUtils.renderIntoDocument(
-      <Header 
-        customHomeTitle="广告管理系统"
-
-        pushdownMenuData={pushdownMenuData}
-
-        signData={signData}
-        signedFlagCookieName='USER_NAME'
-
-        dynamicNav={true}
-        navChannelData={channelData}
-        navDefaultTopOrder={0}
-        navDefaultSubOrder={-1}
-
-        searchPostUrl={"/search"}
-        searchPlaceHolder={"输入年月日‘xxxx-xx-xx’可搜索该日存档" }
-      />
-    );
-
-    const cookies = new Cookies();
-    cookies.set('USER_NAME','BonnieWangAAXXX')
-    const headerNode = ReactDOM.findDOMNode(header);
-    expect(headerNode.querySelector('.signmenu-tool .item--signed').textContent).toBe('设置');
-    expect(headerNode.querySelector('.signmenu-tool .item--signed:nth-child(2)').textContent).toBe('登出');
-  });
-});
-*/
-//TODO: More Test
