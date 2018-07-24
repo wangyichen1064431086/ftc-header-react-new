@@ -19,7 +19,7 @@ npm install "@ftchinese/ftc-header-react-new" --save
 Example:
 
 ```js
-import SearchBar from '@ftchinese/ftc-searchbar-react';
+import Header from '@ftchinese/ftc-header-react-new';
 import React from 'react';
 import ReactDOM from 'react-dom';
 

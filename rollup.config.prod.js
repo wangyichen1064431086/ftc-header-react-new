@@ -17,7 +17,8 @@ export default {
         'react-dom': 'ReactDOM',
         'prop-types':'PropTypes',
         'classnames':'classnames',
-        'react-css-modules':'CSSModules'
+        'react-css-modules':'CSSModules',
+        '@ftchinese/ftc-pushdownmenu-react':'FtcPushdown','@ftchinese/ftc-nav-react':'FtcNav','@ftchinese/ftc-searchbar-react':'FtcSearchbar','@ftchinese/ftc-login-react':'FtcLogin'
       },
       
       file: './build/index.js',
@@ -57,5 +58,5 @@ export default {
     })
   ],
 
-  external: ['react', 'react-dom','prop-types','classnames','react-css-modules']
+  external: ['react', 'react-dom','prop-types','classnames','react-css-modules','@ftchinese/ftc-pushdownmenu-react','@ftchinese/ftc-nav-react','@ftchinese/ftc-searchbar-react','@ftchinese/ftc-login-react']
 }
