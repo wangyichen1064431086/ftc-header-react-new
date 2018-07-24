@@ -1,7 +1,7 @@
 const pushdownMenuData = [
   {
     name: "相关资源",
-    url: "http://www.ftchinese.com",
+    url:'',
     selected: true
   },
   {

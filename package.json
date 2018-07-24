@@ -94,6 +94,7 @@
     "rollup-plugin-replace": "^2.0.0",
     "sass-loader": "^6.0.7",
     "style-loader": "^0.20.3",
+    "universal-cookie": "^2.2.0",
     "webpack": "^4.2.0",
     "webpack-cli": "^2.0.14",
     "webpack-dev-middleware": "^3.0.1",

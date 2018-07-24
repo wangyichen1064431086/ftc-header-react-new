@@ -102,7 +102,7 @@ class Header extends React.Component {
     // console.log(this.state);
     const { selectedTopChannelName, selectedSubChannelName, isHome } = this.state;
     const { customHomeTitle, pushdownMenuData, signData } = this.props;
-    console.log(`isHome:${isHome}`);
+    //console.log(`isHome:${isHome}`);
     const channelTitle = !isHome ? (selectedSubChannelName !== '' ? selectedSubChannelName : (selectedTopChannelName !== '' ? selectedTopChannelName : '')) : '';
     const homeTitleStyle = classnames({
       "home-default-title": customHomeTitle === '',

@@ -10,7 +10,6 @@ The dependency components of it includes '@ftchinese/ftc-pushdownmenu-react','@f
 
 ```cmd
 cd yourProject
-npm install react react-dom prop-types --save
 npm install "@ftchinese/ftc-header-react-new" --save 
 ```
 
@@ -29,7 +28,7 @@ ReactDOM.render(
     pushdownMenuData={[
       {
         name: "相关资源",
-        url: "http://www.ftchinese.com",
+        url: "",
         selected: true
       },
       {

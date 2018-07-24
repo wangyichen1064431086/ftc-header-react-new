@@ -16,8 +16,8 @@ ReactDOM.render(
 
     dynamicNav={true}
     navChannelData={channelData}
-    navDefaultTopOrder={1}
-    navDefaultSubOrder={1}
+    navDefaultTopOrder={0}
+    navDefaultSubOrder={-1}
 
     searchPostUrl={"/search"}
     searchPlaceHolder={"输入年月日‘xxxx-xx-xx’可搜索该日存档" }
