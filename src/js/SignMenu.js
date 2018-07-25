@@ -37,10 +37,12 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
       showLoginOverlay: true
     });
   }
-  clickToCloseLoginOverlay() {
-    this.setState({
-      showLoginOverlay: false
-    });
+  clickToCloseLoginOverlay(e) {
+    if(e.target.className.includes('bgshadow') || e.target.className.includes('overlay-close')) {
+      this.setState({
+        showLoginOverlay: false
+      });
+    }
   }
   renderMenuList() {
     const { signData, hasSignedIn } = this.props;
@@ -71,11 +73,11 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
   }
   renderLoginOverlay() {
     const {showLoginOverlay} = this.state;
+    console.log(showLoginOverlay);
     return (
-      showLoginOverlay &&
       <Login postUrl="/users/login" findPasswordUrl="http://www.ftchinese.com/users/findpassword" registerUrl="http://user.ftchinese.com/register"
       closeFunc={this.clickToCloseLoginOverlay} 
-      forcedShow={showLoginOverlay}
+      show={showLoginOverlay}
       />
     )
   }
