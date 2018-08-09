@@ -1,5 +1,5 @@
-//import Header from '../../src/js/Header.js';
-import Header from '../../build/index.es.js';
+import Header from '../../src/js/Header.js';
+//import Header from '../../build/index.es.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -13,6 +13,8 @@ ReactDOM.render(
 
     signData={signData}
     signedFlagCookieName='USER_NAME'
+    accountType = 'username'
+    loginUrl = 'user/login'
 
     dynamicNav={false}
     navChannelData={channelData}

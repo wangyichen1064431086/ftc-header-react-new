@@ -36,6 +36,10 @@ class Header extends React.Component {
       })
     ),
     signedFlagCookieName: PropTypes.string,
+    accountType: PropTypes.string,
+    loginUrl: PropTypes.string,
+    findPasswordUrl: PropTypes.string,
+    registerUrl: PropTypes.string,
 
     dynamicNav: PropTypes.bool,// data for Nav
     navChannelData: PropTypes.arrayOf( 
@@ -102,7 +106,7 @@ class Header extends React.Component {
     // console.log('this.state when renderTopPart:');
     // console.log(this.state);
     const { selectedTopChannelName, selectedSubChannelName, isHome } = this.state;
-    const { customHomeTitle, pushdownMenuData, signData } = this.props;
+    const { customHomeTitle, pushdownMenuData, signData,accountType, loginUrl, findPasswordUrl, registerUrl } = this.props;
     //console.log(`isHome:${isHome}`);
     const channelTitle = !isHome ? (selectedSubChannelName !== '' ? selectedSubChannelName : (selectedTopChannelName !== '' ? selectedTopChannelName : '')) : '';
     const homeTitleStyle = classnames({
@@ -158,6 +162,10 @@ class Header extends React.Component {
               <SignMenu 
                 signData= {signData}
                 hasSignedIn = {this.state.hasSignedIn}
+                accountType ={accountType}
+                loginUrl = {loginUrl}
+                findPasswordUrl = {findPasswordUrl}
+                registerUrl = {registerUrl}
               />
              }
             </div>

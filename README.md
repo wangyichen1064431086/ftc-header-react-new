@@ -63,6 +63,10 @@ ReactDOM.render(
     ]}
 
     signedFlagCookieName='COOKIENAME_FOR_USERNAMEFLAG'
+    accountType = 'username'
+    loginUrl = 'URL_FOR_LOGIN'
+    findPasswordUrl= 'URL_FOR_FINDPASSWORD'
+    registerUrl = 'URL_FOR_REGISTER'
 
     dynamicNav={false}
     navChannelData={[
@@ -202,8 +206,18 @@ Type String, should be 'before' or 'after'. Optional. Default 'before'. Decide t
 ### signedFlagCookieName
 Type String. Optional. The name of the cookie which flags logined.
 
+### accountType, loginUrl, findPasswordUrl, registerUrl
+Data for @ftchinese/ftc-login-react.
+
+
+<code>accountType</code> for the prop <code>accountType</code> of ftc-login-react.
+<code>loginUrl</code> for the prop <code>postUrl</code> of ftc-login-react.
+<code>findPasswordUrl</code> for the prop <code>findPasswordUrl</code> of ftc-login-react.
+<code>registerUrl</code> for the prop <code>registerUrl</code> of ftc-login-react.
+
+Look for [@ftchinese/ftc-login-react](https://github.com/wangyichen1064431086/ftc-login-react) for details.
 ### dynamicNav, navChannelData, navDefaultTopOrder, navDefaultSubOrder
-Data for ftc-nav-react.
+Data for @ftchinse/ftc-nav-react.
 
 <code>dynamicNav</code> for the prop <code>dynamicnav</code> of ftc-nav-react.
 <code>navChannelData</code> for the prop <code>channels</code> of ftc-nav-react.

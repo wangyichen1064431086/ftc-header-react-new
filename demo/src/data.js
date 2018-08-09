@@ -22,7 +22,7 @@ const signData = [
     "showTime":"before"
   },
  {
-    "url":"http://user.ftchinese.com/register",
+    "url":"/register",
     "word":"免费注册",
     "name":"signUp",
     "showTime":"before"
@@ -34,7 +34,7 @@ const signData = [
     "showTime":"after"
   },
   {
-    "url":"http://user.ftchinese.com/logout",
+    "url":"/logout",
     "word":"登出",
     "name":"signOut",
     "showTime":"after"

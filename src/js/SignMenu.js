@@ -18,7 +18,12 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
         showTime: PropTypes.oneOf(['before','after'])
       })
     ),
-    hasSignedIn: PropTypes.bool
+    hasSignedIn: PropTypes.bool,
+    //for Login component
+    accountType: PropTypes.string,
+    loginUrl: PropTypes.string,
+    findPasswordUrl: PropTypes.string,
+    registerUrl: PropTypes.string
   }
 
 
@@ -73,9 +78,12 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
   }
   renderLoginOverlay() {
     const {showLoginOverlay} = this.state;
+    const {loginUrl,accountType, findPasswordUrl, registerUrl} = this.props;
+
+    const rightAccountType = ['email','username','both'].includes(accountType) ? accountType : 'email';
     console.log(showLoginOverlay);
     return (
-      <Login postUrl="/users/login" findPasswordUrl="http://www.ftchinese.com/users/findpassword" registerUrl="http://user.ftchinese.com/register"
+      <Login postUrl={loginUrl} accountType={rightAccountType} findPasswordUrl={findPasswordUrl} registerUrl={registerUrl}
       closeFunc={this.clickToCloseLoginOverlay} 
       show={showLoginOverlay}
       />
