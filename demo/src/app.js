@@ -1,18 +1,19 @@
-//import Header from '../../src/js/Header.js';
-import Header from '../../build/index.es.js';
+import Header from '../../src/js/Header.js';
+//import Header from '../../build/index.es.js';
 import Login from '@ftchinese/ftc-login-react';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { pushdownMenuData, channelData} from './data.js';
+import {getCookie} from './utils';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      hasSignedIn: false,
+      hasSignedIn: !!getCookie('userid'),
       showLoginOverlay: false
     }
 
