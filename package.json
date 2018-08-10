@@ -1,6 +1,6 @@
 {
   "name": "@ftchinese/ftc-header-react-new",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "The new react version for ftc-header, composing with a series of  smaller components such as ftc-nav-react, ftc-pushdownmenu-react, ftc-login-react,etc. ",
   "main": "build/index.js",
   "module": "build/index.es.js",
