@@ -30,7 +30,6 @@
   },
   "homepage": "https://github.com/wangyichen1064431086/ftc-header-react-new#readme",
   "dependencies": {
-    "@ftchinese/ftc-login-react": "^1.5.3",
     "@ftchinese/ftc-nav-react": "^1.5.0",
     "@ftchinese/ftc-pushdownmenu-react": "^1.3.3",
     "@ftchinese/ftc-searchbar-react": "^1.3.1",
@@ -56,6 +55,7 @@
     }
   },
   "devDependencies": {
+    "@ftchinese/ftc-login-react": "^1.5.3",
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
