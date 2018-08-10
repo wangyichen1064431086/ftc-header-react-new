@@ -62,11 +62,8 @@ ReactDOM.render(
       }
     ]}
 
-    signedFlagCookieName='COOKIENAME_FOR_USERNAMEFLAG'
-    accountType = 'username'
-    loginUrl = 'URL_FOR_LOGIN'
-    findPasswordUrl= 'URL_FOR_FINDPASSWORD'
-    registerUrl = 'URL_FOR_REGISTER'
+    hasSignedIn={false}
+
 
     dynamicNav={false}
     navChannelData={[
@@ -154,7 +151,7 @@ You can briefly know about it by the proptypes:
         showTime: PropTypes.oneOf(['before','after'])
       })
     ),
-    signedFlagCookieName: PropTypes.string,
+    hasSignedIn:PropTypes.bool,
 
     dynamicNav: PropTypes.bool,// data for Nav
     navChannelData: PropTypes.arrayOf( 
@@ -203,8 +200,9 @@ Type String. Optional. The value of the 'key' for every list item of the menu.
 #### showTime
 Type String, should be 'before' or 'after'. Optional. Default 'before'. Decide to show the item or not depending on if there is the cookie whose name is defined by the variable **signedFlagCookieName**.
 
-### signedFlagCookieName
-Type String. Optional. The name of the cookie which flags logined.
+### hasSignedIn 
+
+Type Bool. If the user opening the page has signed in. It may passed from parent component, and may depend on some cookies.
 
 ### accountType, loginUrl, findPasswordUrl, registerUrl
 Data for @ftchinese/ftc-login-react.

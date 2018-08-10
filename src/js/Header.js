@@ -30,16 +30,20 @@ class Header extends React.Component {
     signData:PropTypes.arrayOf( // data For SignMenu
       PropTypes.shape({
         word: PropTypes.string.isRequired,
-        url: PropTypes.string,
+        clickHandler: PropTypes.func,//点击事件处理函数，如果有,那么该项目为div,且代替url
+        url: PropTypes.string,//如果没有点击事件处理函数，那么该项目就为a有url
         name: PropTypes.string.isRequired,
         showTime: PropTypes.oneOf(['before','after'])
       })
     ),
-    signedFlagCookieName: PropTypes.string,
+    hasSignedIn:PropTypes.bool,
+    //signedFlagCookieName: PropTypes.string,
+    /*
     accountType: PropTypes.string,
     loginUrl: PropTypes.string,
     findPasswordUrl: PropTypes.string,
     registerUrl: PropTypes.string,
+    */
 
     dynamicNav: PropTypes.bool,// data for Nav
     navChannelData: PropTypes.arrayOf( 
@@ -65,7 +69,8 @@ class Header extends React.Component {
 
   static defaultProps = {
     customHomeTitle:'',
-    signedFlagCookieName: 'USER_NAME',
+    //signedFlagCookieName: 'USER_NAME',
+    hasSignedIn:false,
     defaultSelectedTopChannelOrder: 0,
     defaultSelectedSubChannelOrder: -1,
     dynamicNav: false
@@ -73,10 +78,9 @@ class Header extends React.Component {
 
   constructor(props) {
     super(props);
-    const {signedFlagCookieName} = this.props;
+    //const {signedFlagCookieName} = this.props;
     this.state = {
-      hasSignedIn: signedFlagCookieName ? !!getCookie(this.props.signedFlagCookieName) : false
-      ,
+      //hasSignedIn: signedFlagCookieName ? !!getCookie(this.props.signedFlagCookieName) : false,
       //selectedTopChannelOrder: 0,
       selectedTopChannelName: "",
       //selectedSubChannelOrder: -1,
@@ -106,7 +110,7 @@ class Header extends React.Component {
     // console.log('this.state when renderTopPart:');
     // console.log(this.state);
     const { selectedTopChannelName, selectedSubChannelName, isHome } = this.state;
-    const { customHomeTitle, pushdownMenuData, signData,accountType, loginUrl, findPasswordUrl, registerUrl } = this.props;
+    const { customHomeTitle, pushdownMenuData, signData, hasSignedIn} = this.props;
     //console.log(`isHome:${isHome}`);
     const channelTitle = !isHome ? (selectedSubChannelName !== '' ? selectedSubChannelName : (selectedTopChannelName !== '' ? selectedTopChannelName : '')) : '';
     const homeTitleStyle = classnames({
@@ -161,11 +165,11 @@ class Header extends React.Component {
               signData && signData.length >0 &&
               <SignMenu 
                 signData= {signData}
-                hasSignedIn = {this.state.hasSignedIn}
-                accountType ={accountType}
-                loginUrl = {loginUrl}
-                findPasswordUrl = {findPasswordUrl}
-                registerUrl = {registerUrl}
+                hasSignedIn = {hasSignedIn}
+                // accountType ={accountType}
+                // loginUrl = {loginUrl}
+                // findPasswordUrl = {findPasswordUrl}
+                // registerUrl = {registerUrl}
               />
              }
             </div>

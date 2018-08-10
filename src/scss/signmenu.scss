@@ -1,15 +1,22 @@
 .menu {
-  .item--nosigned, .item--signed {
+  margin: 0;
+
+  li {
     display: inline-block;
     height: 100%;
     line-height: 57px;
     padding: 0 5px;
     color: #fff;
-    cursor: pointer;
-    text-decoration: none;
     position: relative;
-    &:hover, &:active {
-      text-decoration: underline;
+    cursor: pointer;
+
+    a {
+      cursor: pointer;
+      color: #fff;
+      text-decoration: none;
+      &:hover, &:active {
+        text-decoration: underline;
+      }
     }
   }
   .item--nosigned:not(:nth-child(1))::before {

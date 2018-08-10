@@ -18,10 +18,6 @@ describe('Build a FTCHeader', () => {
         pushdownMenuData={pushdownMenuData}
 
         signData={signData}
-        signedFlagCookieName='USER_NAME'
-
-        accountType = 'username'
-        loginUrl = 'user/login'
 
         dynamicNav={true}
         navChannelData={channelData}
@@ -84,9 +80,6 @@ describe('Test for showing home or channel', () => {
         pushdownMenuData={pushdownMenuData}
 
         signData={signData}
-        signedFlagCookieName='USER_NAME'
-        accountType = 'username'
-        loginUrl = 'user/login'
 
         dynamicNav={true}
         navChannelData={channelData}
@@ -117,9 +110,6 @@ describe('Test for showing home or channel', () => {
         pushdownMenuData={pushdownMenuData}
 
         signData={signData}
-        signedFlagCookieName='USER_NAME'
-        accountType = 'username'
-        loginUrl = 'user/login'
 
         dynamicNav={true}
         navChannelData={channelData}
