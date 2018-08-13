@@ -146,6 +146,7 @@ You can briefly know about it by the proptypes:
     signData:PropTypes.arrayOf( // data For SignMenu
       PropTypes.shape({
         word: PropTypes.string.isRequired,
+        clickHandler: PropTypes.func,
         url: PropTypes.string,
         name: PropTypes.string.isRequired,
         showTime: PropTypes.oneOf(['before','after'])
@@ -191,6 +192,8 @@ TYPE Array. Optional. The data for sign menu. For one item of signData, it has t
 #### word
 TYPE String. Required. The word showed on the menu item.
 
+#### clickHandler
+TYPE Func. Optional. The event handler for clicking. If there is the <code>clickHandler</code>, the item would be a <code>div</code>, and will exect the clickHandler func when clicking it. Otherwise, if there is no <code>clickHandler</code>, the item would be an <code>a</code> and will use the following param <code>url</code>.
 #### url
 Type String. Optional. Default '#'. The navigating target page when clicking on the menu item. If the word is '登录', it will pop a window instead.
 
@@ -204,16 +207,6 @@ Type String, should be 'before' or 'after'. Optional. Default 'before'. Decide t
 
 Type Bool. If the user opening the page has signed in. It may passed from parent component, and may depend on some cookies.
 
-### accountType, loginUrl, findPasswordUrl, registerUrl
-Data for @ftchinese/ftc-login-react.
-
-
-<code>accountType</code> for the prop <code>accountType</code> of ftc-login-react.
-<code>loginUrl</code> for the prop <code>postUrl</code> of ftc-login-react.
-<code>findPasswordUrl</code> for the prop <code>findPasswordUrl</code> of ftc-login-react.
-<code>registerUrl</code> for the prop <code>registerUrl</code> of ftc-login-react.
-
-Look for [@ftchinese/ftc-login-react](https://github.com/wangyichen1064431086/ftc-login-react) for details.
 ### dynamicNav, navChannelData, navDefaultTopOrder, navDefaultSubOrder
 Data for @ftchinse/ftc-nav-react.
 
