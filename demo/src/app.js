@@ -61,7 +61,7 @@ class App extends React.Component {
           // accountType = 'username'
           // loginUrl = 'user/login'
 
-          dynamicNav={false}
+          dynamicNav={true}
           navChannelData={channelData}
           navDefaultTopOrder={0}
           navDefaultSubOrder={-1}

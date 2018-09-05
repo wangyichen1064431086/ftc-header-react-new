@@ -41,7 +41,8 @@ router.get('/', async ctx => {
 
 app.use(router.routes());
 
-const server = app.listen(9000);
-server.on('listening', () => { //NOTE: 'listening'事件，Node的原生事件，在调用server.listen()后触发
-  console.log('Listening 9000');
-})
+
+ app.listen('9000', () => {
+   console.log('listening 9000');
+ })
+ 

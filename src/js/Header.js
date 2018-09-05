@@ -11,8 +11,6 @@ import SignMenu from './SignMenu.js';
 import Nav from '@ftchinese/ftc-nav-react';
 import SearchBar from '@ftchinese/ftc-searchbar-react';
 
-import {getCookie} from './utils';
-
 
 @CSSModules(header, {allowMultiple: true})
 class Header extends React.Component {
@@ -37,13 +35,6 @@ class Header extends React.Component {
       })
     ),
     hasSignedIn:PropTypes.bool,
-    //signedFlagCookieName: PropTypes.string,
-    /*
-    accountType: PropTypes.string,
-    loginUrl: PropTypes.string,
-    findPasswordUrl: PropTypes.string,
-    registerUrl: PropTypes.string,
-    */
 
     dynamicNav: PropTypes.bool,// data for Nav
     navChannelData: PropTypes.arrayOf( 
@@ -79,13 +70,16 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     //const {signedFlagCookieName} = this.props;
+    const {navDefaultTopOrder, navDefaultSubOrder} = this.props;
+    if (navDefaultSubOrder && navDefaultSubOrder) {
+
+    }
     this.state = {
-      //hasSignedIn: signedFlagCookieName ? !!getCookie(this.props.signedFlagCookieName) : false,
       //selectedTopChannelOrder: 0,
       selectedTopChannelName: "",
       //selectedSubChannelOrder: -1,
       selectedSubChannelName: "",
-      isHome: true
+      isHome: (navDefaultSubOrder !== undefined && navDefaultSubOrder !== undefined) ?  (this.props.navDefaultTopOrder === 0 && this.props.navDefaultSubOrder === -1) : true
     }
     this.callbackForNav = this.callbackForNav.bind(this);
   }
@@ -93,14 +87,13 @@ class Header extends React.Component {
   componentDidMount() {
     this.setState({
      // isHome:this.refs.navPart.props.defaultSelectedTopChannelOrder === 0 && this.refs.navPart.props.defaultSelectedSubChannelOrder === -1 //NOTE：切记this.refs在componentDidMount时才能访问
-     isHome: this.props.navDefaultTopOrder === 0 && this.props.navDefaultSubOrder === -1
+     //isHome: this.props.navDefaultTopOrder === 0 && this.props.navDefaultSubOrder === -1
     })
   }
-  callbackForNav(gottenData) {
+  callbackForNav({ selectedTopChannelOrder, selectedSubChannelOrder, selectedTopChannelName, selectedSubChannelName }) { //用于子组件向父组件传递数据
     // console.log(`Gotten nav data:`);
     // console.log(gottenData);
-    const { selectedTopChannelOrder, selectedSubChannelOrder, selectedTopChannelName, selectedSubChannelName } = gottenData;
-    this.setState({//待思考：这里调用setState不会引发循环，但是它确实是在外层component的render中调用的，但它是在Nav的componentDidMount()中调用的。。。待研究
+    this.setState({
       selectedTopChannelName: selectedTopChannelName,
       selectedSubChannelName: selectedSubChannelName,
       isHome: selectedTopChannelOrder ===0 && selectedSubChannelOrder === -1 
