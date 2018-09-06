@@ -19,15 +19,7 @@ class SignMenu extends React.Component { //待分离出去成为一个单独的c
         showTime: PropTypes.oneOf(['before','after'])
       })
     ),
-    hasSignedIn: PropTypes.bool,
-
-    //for Login component
-    /*
-    accountType: PropTypes.string,
-    loginUrl: PropTypes.string,
-    findPasswordUrl: PropTypes.string,
-    registerUrl: PropTypes.string
-    */
+    hasSignedIn: PropTypes.bool
   }
 
 
