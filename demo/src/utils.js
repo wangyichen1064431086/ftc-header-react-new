@@ -18,4 +18,32 @@ function getCookie(name) {
   return decodeURIComponent(cookieStr.substring(valueStartIndex, valueEndIndex));
 }
 
-export {getCookie};
+function setCookie(name, value, path, domain, expires, secure) {
+  let cookieStr = '';
+  if(name && value) {
+     cookieStr = `${decodeURIComponent(name)}=${decodeURIComponent(value)};`
+  }else {
+    return;
+  }
+
+  if(path) {
+    cookieStr += `path=${path};`;
+  }
+  if(domain) {
+    cookieStr += `domain=${domain};`;
+  }
+  if(expires && typeof expires === 'string'){
+    if((new Date(expires)) instanceof Date) {
+      cookieStr += `expires=${new Date(expires).toUTCString()};`
+    }
+  } else if (expires && expires instanceof Date) {
+    cookieStr += `expires=${expires.toUTCString()};`
+  }
+
+  if(secure) {
+    cookieStr += `secure=${secure};`
+  }
+  document.cookie =cookieStr;
+}
+
+export {getCookie, setCookie};
